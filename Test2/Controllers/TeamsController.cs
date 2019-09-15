@@ -129,7 +129,7 @@ namespace Test2.Controllers
             return View("BuyItem", team);
         }
 
-        public async Task<IActionResult> BuyItem(string itemName)
+        public IActionResult BuyItem(string itemName)
         {
             //TODO Rewirte this as a call to the other one with 1 as parameter
 
