@@ -40,8 +40,10 @@ namespace Test2
                 // Make the session cookie essential
                 options.Cookie.IsEssential = true;
             });
+            var connection = "Data Source=ch2c.db";
             services.AddDbContext<Ch2CContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(connection));
+            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
