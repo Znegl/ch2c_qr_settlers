@@ -1,0 +1,15 @@
+﻿@model Test2.Models.Team
+
+@{
+    ViewData["Title"] = "Start!";
+}
+
+<h1>StartTeam</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.TeamName) Start tid: @Html.DisplayFor(model => model.StarTtime) </h4>
+    <hr />
+    <h5>Kom igang med at samle resourcer nu</h5>
+    Sluttid:
+        @(Model.StarTtime + TimeSpan.FromMinutes(15))
+</div>
