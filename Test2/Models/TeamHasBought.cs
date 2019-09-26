@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace Test2.Models
 {
-    public class ResourceRead
+    public class TeamHasBought
     {
-        public int ResourceReadID { get; set; }
+        public int TeamHasBoughtID { get; set; }
         public int TeamID { get; set; }
-        public string ResourceUUID { get; set; }
+        public string Bought { get; set; }
+        virtual public Team Team { get; set; }
+
     }
 }

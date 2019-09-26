@@ -19,5 +19,7 @@ namespace Test2.Models
         public DbSet<Team> Teams { get; set; }
         public DbSet<LogLine> Logs { get; set; }
         public DbSet<ResourceRead> ResourceReads { get; set; }
+        public DbSet<TeamHasBought> TeamHasBoughts { get; set; }
+        public DbSet<ItemsToBuy> ItemsToBuys { get; set; }
     }
 }

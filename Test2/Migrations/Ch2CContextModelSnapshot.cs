@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Test2.Models;
 
@@ -15,15 +14,26 @@ namespace Test2.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+
+            modelBuilder.Entity("Test2.Models.ItemsToBuy", b =>
+                {
+                    b.Property<int>("ItemsToBuyID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Guid");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ItemsToBuyID");
+
+                    b.ToTable("ItemsToBuys");
+                });
 
             modelBuilder.Entity("Test2.Models.LogLine", b =>
                 {
                     b.Property<int>("LogLineID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("LogTime");
 
@@ -37,14 +47,11 @@ namespace Test2.Migrations
             modelBuilder.Entity("Test2.Models.ResourceRead", b =>
                 {
                     b.Property<int>("ResourceReadID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ResourceUUID");
 
                     b.Property<int>("TeamID");
-
-                    b.Property<DateTime>("dateTime");
 
                     b.HasKey("ResourceReadID");
 
@@ -54,8 +61,7 @@ namespace Test2.Migrations
             modelBuilder.Entity("Test2.Models.Team", b =>
                 {
                     b.Property<int>("TeamID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("Cloth");
 
@@ -74,6 +80,30 @@ namespace Test2.Migrations
                     b.HasKey("TeamID");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("Test2.Models.TeamHasBought", b =>
+                {
+                    b.Property<int>("TeamHasBoughtID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Bought");
+
+                    b.Property<int>("TeamID");
+
+                    b.HasKey("TeamHasBoughtID");
+
+                    b.HasIndex("TeamID");
+
+                    b.ToTable("TeamHasBoughts");
+                });
+
+            modelBuilder.Entity("Test2.Models.TeamHasBought", b =>
+                {
+                    b.HasOne("Test2.Models.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("TeamID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

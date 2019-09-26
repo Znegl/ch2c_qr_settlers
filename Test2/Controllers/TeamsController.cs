@@ -29,10 +29,24 @@ namespace Test2.Controllers
         public TeamsController(Ch2CContext context)
         {
             _context = context;
+            var c = (from item in _context.ItemsToBuys
+                     select item).Count() == 0;
+            if (c)
+            {
+                var resourceNames = new List<string> { "Metal", "Wood", "Plastic", "Cloth" };
+                for(var i = 0; i < 60; i++)
+                {
+                    foreach (var item in resourceNames)
+                    {
+                        _context.ItemsToBuys.Add(new ItemsToBuy { Guid = Guid.NewGuid().ToString(), Name = item });
+                    }
+                }
+                _context.SaveChanges();
+            }
             ThingsToBuy.Add("Lille Hammer", new BuyingItem
             {
                 Name = "Lille Hammer",
-                Metal= 3,
+                Metal = 3,
                 Wood = 2
             });
             ThingsToBuy.Add("Lille Sav", new BuyingItem
@@ -64,8 +78,7 @@ namespace Test2.Controllers
             });
             ThingsToBuy.Add("Tape", new BuyingItem
             {
-                Plastic = 2,
-                Cloth = 1,
+                Plastic = 10,
                 Name = "Tape"
             });
             ThingsToBuy.Add("Piberender", new BuyingItem
@@ -119,6 +132,7 @@ namespace Test2.Controllers
                 team.Plastic -= (itemToBuy.Plastic*number);
                 team.NumberOfActions += 1;
                 _context.Teams.Update(team);
+                _context.TeamHasBoughts.Add(new TeamHasBought { TeamID = team.TeamID, Team = team, Bought = itemName });
             }
             var logLine = new LogLine { LogTime = DateTime.Now, Message = $"{team.TeamName} tried to buy {number} of {itemName} with success: {canBuy}" };
             _context.Logs.Add(logLine);
@@ -186,6 +200,7 @@ namespace Test2.Controllers
         }
 
         public IActionResult TimesUp() => View();
+        public IActionResult Cheater() => View();
 
         public async Task<IActionResult> AddResource(int resourceType, string resourceUUID)
         {
@@ -196,12 +211,19 @@ namespace Test2.Controllers
             if (done)
                 return RedirectToAction("TimesUp");
 
+            var validResource = (from res in _context.ItemsToBuys
+                                 where res.Guid == resourceUUID
+                                 select res).Count() == 1;
+
+            if (!validResource)
+                return RedirectToAction("Cheater");
+
             var rrs = (from readr in _context.ResourceReads
-                       where readr.TeamID == team.TeamID && readr.ResourceUUID == resourceUUID && (readr.dateTime + TimeSpan.FromSeconds(15)) < DateTime.Now
+                       where readr.TeamID == team.TeamID && readr.ResourceUUID == resourceUUID
                        select readr).Count();
 
             if (rrs > 0)
-                return NotFound();
+                return RedirectToAction("Cheater");
             var type = "";
             switch (resourceType)
             {
@@ -225,7 +247,7 @@ namespace Test2.Controllers
                     break;
             }
             team.NumberOfActions += 1;
-            var rr = new ResourceRead { dateTime = DateTime.Now, ResourceUUID = resourceUUID, TeamID = team.TeamID };
+            var rr = new ResourceRead { ResourceUUID = resourceUUID, TeamID = team.TeamID };
             _context.ResourceReads.Add(rr);
             _context.Teams.Update(team);
             var logLine = new LogLine { LogTime = DateTime.Now, Message = $"{team.TeamName} add a resource of type {type}" };

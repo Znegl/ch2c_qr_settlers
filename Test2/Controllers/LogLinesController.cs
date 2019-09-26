@@ -25,6 +25,24 @@ namespace Test2.Controllers
             return View(await lines);
         }
 
+        public IActionResult ShowTeams()
+        {
+            var teams = _context.Teams;
+            return View(teams);
+        }
+
+        public IActionResult ShowTeamBuys(int teamId)
+        {
+            var buys = _context.TeamHasBoughts.Where(t => t.TeamID == teamId);
+            return View(buys);
+        }
+
+        public IActionResult ShowResourceLinks()
+        {
+            var resources = _context.ItemsToBuys;
+            return View(resources);
+        }
+
         private bool LogLineExists(int id)
         {
             return _context.Logs.Any(e => e.LogLineID == id);

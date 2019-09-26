@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Test2.Models.ItemsToBuy>
+
+@{
+    ViewData["Title"] = "ShowResourceLinks";
+    var baseUrlTemplate = "https://ch2c.azurewebsites.net/Teams/AddResource/{0}/{1}";
+}
+
+<h1>ShowResourceLinks</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div>
+@foreach (var item in Model) {
+    <pre>@string.Format(baseUrlTemplate, (item.Name=="Metal"?0:item.Name=="Wood"?1:item.Name=="Cloth"?2:item.Name=="Plastic"?3:1000),item.Guid)</pre>
+}
+</div>
