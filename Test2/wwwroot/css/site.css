@@ -1,56 +1,130 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+@font-face {
+  font-family: 'Santana-Black';
+  font-display: swap;
+  src: local('Santana-Black'),  url('/Santana-Black.woff2') format('woff2');
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
 html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  background: #ebebeb;
+  hyphens: manual;
+
 }
-.footer {
-  position: absolute;
-  bottom: 0;
+
+@media (min-width: 80rem) {
+    body {
+        font-size: 1.25vw;
+    }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Santana-Black', sans-serif;
+  color: #0a3858;
+  letter-spacing: 0.025em;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: uppercase;
+}
+
+h4,
+h5 {
+  font-variant: small-caps;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+p, ul, ol {
+    line-height: 1.4em;
+}
+
+p {
+  margin: 1em 0;
+}
+
+p, li {
+  max-width: 50em;
+}
+
+ul,
+ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+li {
+  margin: .75em 0;
+}
+
+a {
+  color: #0a3858;
+}
+
+button {
+  font-size: 1em;
+}
+
+.page-wrapper {
   width: 100%;
-  white-space: nowrap;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+  max-width: 60rem;
+  margin: auto;
+  flex-grow: 1;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.content {
+  position: relative;
+  padding: 2.5rem 2rem 2rem;
+}
+
+.table-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: .25em .5em;
+}
+th.number, td.number {
+    text-align: right;
+}
+
+tbody > tr:nth-child(odd) > td {
+    background: #dedede;
 }
