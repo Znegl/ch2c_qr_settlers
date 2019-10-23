@@ -1,38 +1,35 @@
 ﻿@model IEnumerable<Test2.Models.Team>
 
 @{
-    ViewData["Title"] = "ShowTeams";
+    ViewData["Title"] = "Holdoversigt";
 }
 
-<h1>ShowTeams</h1>
+<h1>Holdoversigt</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <div class="table-wrapper">
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TeamName)
+                Hold
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StarTtime)
+                Starttid
             </th>
             <th class="number">
-                @Html.DisplayNameFor(model => model.Metal)
+                Metal
             </th>
             <th class="number">
-                @Html.DisplayNameFor(model => model.Wood)
+                Træ
             </th>
             <th class="number">
-                @Html.DisplayNameFor(model => model.Cloth)
+                Stof
             </th>
             <th class="number">
-                @Html.DisplayNameFor(model => model.Plastic)
+                Plastik
             </th>
             <th class="number">
-                @Html.DisplayNameFor(model => model.NumberOfActions)
+                Antal handlinger
             </th>
             <th></th>
         </tr>
@@ -62,9 +59,7 @@
                 @Html.DisplayFor(modelItem => item.NumberOfActions)
             </td>
             <td>
-                <a asp-action="ShowTeamBuys" asp-route-id="@item.TeamID">Edit</a> |
-                @*<a asp-action="Details" asp-route-id="@item.TeamID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TeamID">Delete</a>*@
+                <a asp-action="ShowTeamBuys" asp-route-id="@item.TeamID">Vis køb</a>
             </td>
         </tr>
 }
