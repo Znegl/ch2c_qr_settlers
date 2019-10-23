@@ -15,7 +15,7 @@ html {
 body {
   background: #ebebeb;
   hyphens: manual;
-
+  text-align: center;
 }
 
 @media (min-width: 80rem) {
