@@ -121,6 +121,7 @@ th, td {
     text-align: left;
     padding: .25em .5em;
 }
+
 th.number, td.number {
     text-align: right;
 }
