@@ -220,7 +220,7 @@ namespace Test2.Controllers
                 return RedirectToAction("Cheater");
 
             var rrs = (from readr in _context.ResourceReads
-                       where readr.TeamID == team.TeamID && readr.ResourceUUID == resourceUUID
+                       where readr.TeamID == team.TeamID && readr.ResourceUUID == resourceUUID && readr.ReadAt > DateTime.Now
                        select readr).Count();
 
             if (rrs > 0)
@@ -248,7 +248,7 @@ namespace Test2.Controllers
                     break;
             }
             team.NumberOfActions += 1;
-            var rr = new ResourceRead { ResourceUUID = resourceUUID, TeamID = team.TeamID };
+            var rr = new ResourceRead { ResourceUUID = resourceUUID, TeamID = team.TeamID, ReadAt = DateTime.Now.AddSeconds(30) };
             _context.ResourceReads.Add(rr);
             _context.Teams.Update(team);
             var logLine = new LogLine { LogTime = DateTime.Now, Message = $"{team.TeamName} add a resource of type {type}" };
