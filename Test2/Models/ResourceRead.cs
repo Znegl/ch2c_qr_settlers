@@ -10,5 +10,6 @@ namespace Test2.Models
         public int ResourceReadID { get; set; }
         public int TeamID { get; set; }
         public string ResourceUUID { get; set; }
+        public DateTime ReadAt { get; set; }
     }
 }
