@@ -78,7 +78,8 @@ namespace Test2.Controllers
             });
             ThingsToBuy.Add("Tape", new BuyingItem
             {
-                Plastic = 10,
+                Plastic = 2,
+                Cloth = 1,
                 Name = "Tape"
             });
             ThingsToBuy.Add("Piberender", new BuyingItem
@@ -95,7 +96,7 @@ namespace Test2.Controllers
             ThingsToBuy.Add("Papir A4", new BuyingItem
             {
                 Name = "Papir A4",
-                Cloth = 1
+                Wood = 1
             });
         }
 
