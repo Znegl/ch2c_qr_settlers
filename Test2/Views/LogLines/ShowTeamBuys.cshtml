@@ -1,22 +1,19 @@
 ﻿@model IEnumerable<Test2.Models.TeamHasBought>
 
 @{
-    ViewData["Title"] = "ShowTeamBuys";
+    ViewData["Title"] = "Holdets køb";
 }
 
-<h1>ShowTeamBuys</h1>
+<h1>Holdets køb</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Bought)
+                Købt
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team)
+                Hold
             </th>
         </tr>
     </thead>
