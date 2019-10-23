@@ -110,6 +110,7 @@ button {
 .table-wrapper {
     max-width: 100%;
     overflow-x: auto;
+    margin: 1em 0;
 }
 
 table {
