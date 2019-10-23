@@ -15,7 +15,7 @@ html {
 body {
   background: #ebebeb;
   hyphens: manual;
-
+  text-align: center;
 }
 
 @media (min-width: 80rem) {
@@ -121,6 +121,7 @@ th, td {
     text-align: left;
     padding: .25em .5em;
 }
+
 th.number, td.number {
     text-align: right;
 }

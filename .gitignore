@@ -339,3 +339,6 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /Test2/ch2c.db
+
+# macOS hidden files
+.DS_Store
